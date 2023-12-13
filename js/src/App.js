@@ -92,14 +92,13 @@ class App extends Component {
 
       return (
         <Container>
-          <Table dataSource={students} columns={columns} pagination={false} rowKey='studentID'/>
+          <Table style={{marginBottom:'100px'}} dataSource={students} columns={columns} pagination={false} rowKey='studentID'/>
           <Modal 
             title='Add new student' 
             open={isAddStudentModalVisible} 
             onOk={this.closeAddStudentModal} 
             onCancel={this.closeAddStudentModal}
             width={1000}>
-              <h1>Hello Modal with Antd</h1>
               <AddStudentForm />
           </Modal>
           <Footer numberOfStudents={students.length} handleAddStudentClickEvent={this.openAddStudentModal}></Footer>
