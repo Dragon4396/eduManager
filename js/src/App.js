@@ -8,7 +8,8 @@ import {
   Avatar,
   Table,
   Spin,
-  Modal
+  Modal,
+  Empty
 } from 'antd';
 import { LoadingOutlined } from '@ant-design/icons';
 
@@ -44,6 +45,20 @@ class App extends Component {
   render() {
     const { students, isFetching, isAddStudentModalVisible } = this.state;
 
+    const commonElements = () => (
+      <div>
+        <Modal 
+          title='Add new student' 
+          open={isAddStudentModalVisible} 
+          onOk={this.closeAddStudentModal} 
+          onCancel={this.closeAddStudentModal}
+          width={1000}>
+            <AddStudentForm onSuccess={() => {this.closeAddStudentModal(); this.fetchStudents();}}/>
+        </Modal>
+        <Footer numberOfStudents={students.length} handleAddStudentClickEvent={this.openAddStudentModal} />
+      </div>
+    )
+
     if(isFetching) {
       return(
         <Container>
@@ -53,6 +68,7 @@ class App extends Component {
     }
 
     if(students && students.length) {
+
       const columns = [
         {
           title: '',
@@ -93,21 +109,20 @@ class App extends Component {
       return (
         <Container>
           <Table style={{marginBottom:'100px'}} dataSource={students} columns={columns} pagination={false} rowKey='studentID'/>
-          <Modal 
-            title='Add new student' 
-            open={isAddStudentModalVisible} 
-            onOk={this.closeAddStudentModal} 
-            onCancel={this.closeAddStudentModal}
-            width={1000}>
-              <AddStudentForm onSuccess={() => {this.closeAddStudentModal(); this.fetchStudents();}}/>
-          </Modal>
-          <Footer numberOfStudents={students.length} handleAddStudentClickEvent={this.openAddStudentModal}></Footer>
+          {commonElements()}
         </Container>
       );
 
     }
 
-    return <h1> No Students found </h1>
+    return (
+      <Container>
+        <Empty description={
+          <h1>No Students Found</h1>
+        }/>
+        {commonElements()}
+      </Container>
+    )
   }
 }
 
