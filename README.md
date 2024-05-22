@@ -1,4 +1,8 @@
 # eduManager
+### `Project Features`
+- Replaced Vue with React to improve the system's performance in handling large amounts of data, and to align the project with the mainstream frontend framework in North America
+- Utilized Spring Boot and Spring MVC to construct the backend framework; Built and managed dependencies of the project by Maven, and designed the database access object and service layer to facilitates interaction between the controller and database
+- Migrated the database from MySQL to PostgreSQL, resulting in a nearly 40% boost in handling complex queries and large data sets
 
 # Development Environment
 
@@ -52,3 +56,5 @@ You can learn more in the [Create React App documentation](https://facebook.gith
 
 To learn React, check out the [React documentation](https://reactjs.org/).
 
+# Contributing
+If you want to contribute to this project, please fork this repository and create a pull request, or drop me an email at kha112@sfu.ca
